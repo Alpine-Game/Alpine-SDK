@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading;
+using Alpine_Level_Editor.utils.entity_utils;
+using Newtonsoft.Json;
 using SFML.Graphics;
 using SFML.System;
 
@@ -14,6 +19,10 @@ namespace Alpine_Level_Editor.entities {
         public RenderWindow window { get; set; }
 
         public bool isDead = false;
+
+        public String data;
+        
+        public EntityData entityData;
 
         protected Entity(string name, float health, string textureFile, RenderWindow window) {
             this.name = name;
@@ -41,13 +50,23 @@ namespace Alpine_Level_Editor.entities {
 
             entitySprite = new Sprite(new Texture(entityTexture));
             window.Draw(entitySprite);
+
+            entityData = new EntityData();
+
+            entityData.name = name;
+            entityData.health = health;
+            entityData.texLoc = textureFile;
+            entityData.customData = new List<string>();
         }
 
-        public abstract void update();
+        public virtual void update() {
+            if (entityData.name != null) {
+                name = entityData.name;
+            }
+        }
 
         public virtual void render() {
             window.Draw(entitySprite);
-            Console.WriteLine("tried to render entity: " + name);
         }
 
         public virtual void dispose() { //Disposes any left over shit.

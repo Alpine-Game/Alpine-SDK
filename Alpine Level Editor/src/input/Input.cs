@@ -11,6 +11,9 @@ namespace Alpine_Level_Editor.input {
         private static bool right = false;
         private static bool shift = false;
 
+        private static bool lmb = false;
+        private static bool rmb = false;
+
         private static bool listenerActive = false;
         
         private static List<Keyboard.Key> keysHeld = new List<Keyboard.Key>();
@@ -102,11 +105,35 @@ namespace Alpine_Level_Editor.input {
                 catch (Exception exception) {
                     Console.WriteLine("Had trouble with removing this key.");
                 }
+
+                window.MouseButtonPressed += (sender, e) => {
+                    if (e.Button == Mouse.Button.Left) {
+                        lmb = true;
+                    } else if (e.Button == Mouse.Button.Right) {
+                        rmb = true;
+                    }
+                };
+                
+                window.MouseButtonReleased += (sender, e) => {
+                    if (e.Button == Mouse.Button.Left) {
+                        lmb = false;
+                    } else if (e.Button == Mouse.Button.Right) {
+                        rmb = false;
+                    }
+                };
             };
         }
         
         public static bool getShift() {
             return shift;
+        }
+
+        public static bool getLMB() {
+            return lmb;
+        }
+
+        public static bool getRMB() {
+            return rmb;
         }
     }
 }

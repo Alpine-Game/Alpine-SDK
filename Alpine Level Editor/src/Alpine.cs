@@ -37,8 +37,8 @@ namespace Alpine_Level_Editor {
             mode = new VideoMode(1280, 720);                    //Build the
             window  = new RenderWindow(mode, "Alpine Level Editor");    //window :D
             
-            viewport = new View(new Vector2f(0, 0), new Vector2f(1280, 720)); //Add the
-            ui = new View(new Vector2f(0, 0), new Vector2f(1280, 720));       //cameras.
+            viewport = new View(new FloatRect(new Vector2f(0, 0), new Vector2f(1280, 720))); //Add the
+            ui = new View(new FloatRect(new Vector2f(0, 0), new Vector2f(1280, 720)));       //cameras.
             
             window.SetView(viewport); //Set the *viewport* to the viewport camera.
             

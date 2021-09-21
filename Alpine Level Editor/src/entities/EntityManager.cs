@@ -17,7 +17,8 @@ namespace Alpine_Level_Editor.entities {
 
         public void update(RenderWindow window) {
             for (int i = 0; i < getEntities().Count; i++) {
-                window.Draw(getEntities()[i].entitySprite);
+                getEntities()[i].update();
+                getEntities()[i].render();
             }
         }
 
