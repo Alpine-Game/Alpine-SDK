@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Alpine_Level_Editor.input;
+using Alpine_Level_Editor.ui;
 using Alpine_Level_Editor.utils;
 using SFML.Graphics;
 using SFML.System;
@@ -9,7 +10,10 @@ using SFML.Window;
 namespace Alpine_Level_Editor.entities {
     public class DragableEntity : Entity {
         private bool isClicked = false;
-        public DragableEntity(string name, float health, string textureFile, RenderWindow window) : base(name, health, textureFile, window) {
+
+        private LevelEditorUI gui;
+        public DragableEntity(string name, float health, string textureFile, RenderWindow window, LevelEditorUI gui) : base(name, health, textureFile, window) {
+            this.gui = gui;
         }
 
         public DragableEntity(string name, float health, RenderWindow window) : base(name, health, window) {
@@ -44,7 +48,7 @@ namespace Alpine_Level_Editor.entities {
                 }
             };
 
-            if (isClicked) {
+            if (isClicked&& gui.getGUI().GetWidgetBelowMouseCursor((int) mousePosition.X, (int) mousePosition.Y) == null) {
                 entitySprite.Position = new Vector2f(mousePosition.X, mousePosition.Y);
             }
             

@@ -5,7 +5,9 @@ using SFML.Graphics;
 namespace Alpine_Level_Editor.entities {
     public class EntityManager {
         public Dictionary<String, Entity> _entities;
+        
         public Alpine alpine;
+        public Entity selectedEntity;
 
         public EntityManager(Alpine alpine){
             _entities = new Dictionary<string, Entity>();
@@ -13,6 +15,7 @@ namespace Alpine_Level_Editor.entities {
         }
 
         public void create() {
+            selectedEntity = null;
         }
 
         public void update(RenderWindow window) {
