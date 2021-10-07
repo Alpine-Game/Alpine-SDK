@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
+using ThreadState = System.Diagnostics.ThreadState;
 
 namespace Level_Editor {
     public partial class MainWindow : Form {
@@ -149,7 +151,12 @@ namespace Level_Editor {
 
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            new GameState("");
+            Thread thread = new Thread((o =>
+            {
+                new GameState("");
+            }));
+            
+            thread.Start();
         }
     }
 }

@@ -40,6 +40,16 @@ namespace Level_Editor.engine.entity
             return list;
         }
 
+        public void dispose()
+        {
+            foreach (Entity entity in _entities.Values)
+            {
+                entity.dispose();
+            }
+            
+            _entities.Clear();
+        }
+
         ~EntityManager()
         {
             foreach (Entity entity in getEntities())

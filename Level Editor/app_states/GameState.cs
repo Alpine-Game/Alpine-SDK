@@ -26,6 +26,7 @@ namespace Level_Editor
 
         private SceneManager sceneManager;
 
+
         public GameState(params String[] args)
         {
             loadingState = LoadingState.LOADING; //The game is loading.
@@ -82,7 +83,7 @@ namespace Level_Editor
         {
             window.Closed += (sender, e) =>
             {
-                System.Environment.Exit(0);
+                window.Close();
             };
         }
 
