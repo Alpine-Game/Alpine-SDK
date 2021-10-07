@@ -9,6 +9,19 @@ namespace Level_Editor {
         public MainWindow()
         {
             InitializeComponent();
+            
+            foreach (string name in Enum.GetNames(typeof(Item.ItemType)))
+            {
+                selectedItemType.Items.Add(name);
+            }
+
+            selectedItemType.SelectedIndex = 0;
+
+            selectedItemType.Visible = false;
+            nameBox.Visible = false;
+            nameLabel.Visible = false;
+            typeLabel.Visible = false;
+
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -85,7 +98,14 @@ namespace Level_Editor {
                 Debug.WriteLine(selectedItem);
                 itemManager.selectedItem = item;
 
-                
+                nameLabel.Visible = true;
+                typeLabel.Visible = true;
+
+                nameBox.Text = item.itemName;
+                selectedItemType.SelectedItem = item.itemType.ToString();
+
+                nameBox.Visible = true;
+                selectedItemType.Visible = true;
                 
                 switch (item.itemType)
                 {
@@ -120,6 +140,16 @@ namespace Level_Editor {
         public void updateValue(object sender, EventArgs e)
         {
             
+        }
+
+        private void selectedItemType_ControlAdded(object sender, ControlEventArgs e)
+        {
+            
+        }
+
+        private void playToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new GameState("");
         }
     }
 }

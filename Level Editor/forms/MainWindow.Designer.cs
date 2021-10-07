@@ -52,6 +52,8 @@ namespace Level_Editor {
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.buildToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.playToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sfmlRenderer = new Level_Editor.SFMLBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.newItemButton = new System.Windows.Forms.Button();
@@ -59,9 +61,9 @@ namespace Level_Editor {
             this.itemList = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.selectedItemType = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.nameBox = new System.Windows.Forms.TextBox();
+            this.typeLabel = new System.Windows.Forms.Label();
+            this.nameLabel = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -70,7 +72,7 @@ namespace Level_Editor {
             // 
             // menuStrip1
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem, this.editToolStripMenuItem, this.toolsToolStripMenuItem, this.helpToolStripMenuItem });
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] { this.fileToolStripMenuItem, this.editToolStripMenuItem, this.toolsToolStripMenuItem, this.helpToolStripMenuItem, this.buildToolStripMenuItem });
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1264, 24);
@@ -233,6 +235,20 @@ namespace Level_Editor {
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
+            // buildToolStripMenuItem
+            // 
+            this.buildToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] { this.playToolStripMenuItem });
+            this.buildToolStripMenuItem.Name = "buildToolStripMenuItem";
+            this.buildToolStripMenuItem.Size = new System.Drawing.Size(46, 20);
+            this.buildToolStripMenuItem.Text = "Build";
+            // 
+            // playToolStripMenuItem
+            // 
+            this.playToolStripMenuItem.Name = "playToolStripMenuItem";
+            this.playToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.playToolStripMenuItem.Text = "Play";
+            this.playToolStripMenuItem.Click += new System.EventHandler(this.playToolStripMenuItem_Click);
+            // 
             // sfmlRenderer
             // 
             this.sfmlRenderer.Location = new System.Drawing.Point(292, 24);
@@ -287,9 +303,9 @@ namespace Level_Editor {
             // panel2
             // 
             this.panel2.Controls.Add(this.selectedItemType);
-            this.panel2.Controls.Add(this.textBox1);
-            this.panel2.Controls.Add(this.label4);
-            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.nameBox);
+            this.panel2.Controls.Add(this.typeLabel);
+            this.panel2.Controls.Add(this.nameLabel);
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(970, 19);
             this.panel2.Name = "panel2";
@@ -305,32 +321,33 @@ namespace Level_Editor {
             this.selectedItemType.Name = "selectedItemType";
             this.selectedItemType.Size = new System.Drawing.Size(229, 21);
             this.selectedItemType.TabIndex = 7;
+            this.selectedItemType.ControlAdded += new System.Windows.Forms.ControlEventHandler(this.selectedItemType_ControlAdded);
             // 
-            // textBox1
+            // nameBox
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(53, 40);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(229, 20);
-            this.textBox1.TabIndex = 3;
+            this.nameBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.nameBox.Location = new System.Drawing.Point(53, 40);
+            this.nameBox.Name = "nameBox";
+            this.nameBox.Size = new System.Drawing.Size(229, 20);
+            this.nameBox.TabIndex = 3;
             // 
-            // label4
+            // typeLabel
             // 
-            this.label4.Location = new System.Drawing.Point(9, 69);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(38, 16);
-            this.label4.TabIndex = 2;
-            this.label4.Text = "Type:";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
+            this.typeLabel.Location = new System.Drawing.Point(9, 69);
+            this.typeLabel.Name = "typeLabel";
+            this.typeLabel.Size = new System.Drawing.Size(38, 16);
+            this.typeLabel.TabIndex = 2;
+            this.typeLabel.Text = "Type:";
+            this.typeLabel.Click += new System.EventHandler(this.label4_Click);
             // 
-            // label3
+            // nameLabel
             // 
-            this.label3.Location = new System.Drawing.Point(9, 44);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 16);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Name:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
+            this.nameLabel.Location = new System.Drawing.Point(9, 44);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(38, 16);
+            this.nameLabel.TabIndex = 1;
+            this.nameLabel.Text = "Name:";
+            this.nameLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -360,6 +377,12 @@ namespace Level_Editor {
             this.PerformLayout();
         }
 
+        private System.Windows.Forms.ToolStripMenuItem buildToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem playToolStripMenuItem;
+
+        private System.Windows.Forms.Label typeLabel;
+        private System.Windows.Forms.TextBox nameBox;
+
         private System.Windows.Forms.ListView itemList;
 
         private System.Windows.Forms.ComboBox selectedItemType;
@@ -373,7 +396,7 @@ namespace Level_Editor {
         private System.Windows.Forms.Label label4;
 
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label nameLabel;
 
         private System.Windows.Forms.Panel panel2;
 
