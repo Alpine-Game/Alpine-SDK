@@ -3,14 +3,14 @@ using System.Windows.Forms;
 using SFML.Graphics;
 
 namespace Level_Editor {
-    public class Alpine {
+    public class LevelEditorState {
         private Form mainForm;
 
         private RenderWindow sfmlWindow;
         private SFMLBox renderer;
 
         private ItemManager itemManager;
-        public Alpine(Form mainForm) {
+        public LevelEditorState(Form mainForm) {
             this.mainForm = mainForm;
 
             renderer = (SFMLBox) mainForm.Controls["sfmlRenderer"];
