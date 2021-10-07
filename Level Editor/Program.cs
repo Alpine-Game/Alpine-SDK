@@ -10,22 +10,36 @@ namespace Level_Editor {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main() {
-            Form mainWindow = new MainWindow();
-            Alpine alpine = new Alpine(mainWindow);
+        static void Main(string[] args) {
+            if (args.Length > 0)
+            {
+                foreach (string arg in args)
+                {
+                    if (arg == "-editor")
+                    {
+                        Console.WriteLine("Starting Alpine in level editor mode.");
+                
+                        Form mainWindow = new MainWindow();
+                        LevelEditorState alpine = new LevelEditorState(mainWindow);
 
             
-            alpine.init();
-            alpine.create();
-            mainWindow.Show();
+                        alpine.init();
+                        alpine.create();
+                        mainWindow.Show();
 
-            while (mainWindow.Visible)
-            {
-                System.Windows.Forms.Application.DoEvents();
-                alpine.update();
-                alpine.render();
+                        while (mainWindow.Visible)
+                        {
+                            Application.DoEvents();
+                            alpine.update();
+                            alpine.render();
+                        }
+                    }
+                }
             }
-
+            else
+            {
+                GameState gameState = new GameState("");
+            }
         }
     }
 }

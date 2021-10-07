@@ -100,7 +100,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Alpine.cs" />
+    <Compile Include="app_states\GameState.cs" />
+    <Compile Include="app_states\LevelEditorState.cs" />
+    <Compile Include="app_states\ModTestState.cs" />
+    <Compile Include="engine\entity\Entity.cs" />
+    <Compile Include="engine\entity\EntityManager.cs" />
+    <Compile Include="engine\scene\Scene.cs" />
+    <Compile Include="engine\scene\SceneManager.cs" />
+    <Compile Include="engine\util\GameObject.cs" />
     <Compile Include="forms\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
