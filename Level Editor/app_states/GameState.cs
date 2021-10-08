@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Level_Editor.engine.scene;
+using Level_Editor.engine.util;
 using SFML.Graphics;
 using SFML.Window;
 
@@ -15,7 +16,7 @@ namespace Level_Editor
 
         private RenderWindow window;
         private VideoMode mode;
-        
+
         enum LoadingState { LOADING, RUNNING, QUITTING }
         enum PostLoadAction { ENTER_TITLE_SCREEN, LOAD_LEVEL }
 
@@ -25,7 +26,6 @@ namespace Level_Editor
         private string loadLevelPath = ""; //This is used if postLoadAction is set to LOAD_LEVEL.
 
         private SceneManager sceneManager;
-
 
         public GameState(params String[] args)
         {
@@ -47,9 +47,13 @@ namespace Level_Editor
             {
                 postLoadAction = PostLoadAction.ENTER_TITLE_SCREEN;
             }
+            
+            Settings.LoadSettings();
 
-            mode = new VideoMode(1280, 720);
-            window = new RenderWindow(mode, "Alpine 2021.0.0.1");
+            mode = new VideoMode(Settings.DefaultWindowSizeX, Settings.DefaultWindowSizeY);
+            window = new RenderWindow(mode, Settings.WindowName);
+            
+            window.SetIcon(256, 256, new Image("res/icon.png").Pixels);
 
             init(); //Load all the shit!!
             
@@ -65,6 +69,7 @@ namespace Level_Editor
         public void init()
         { //Preload operations.
             sceneManager = new SceneManager(window, new Scene(window));
+            events();
         }
 
         public void create()
@@ -74,7 +79,6 @@ namespace Level_Editor
 
         public void update()
         {
-            events();
             window.DispatchEvents();
             sceneManager.updateCurrentScene();
         }
@@ -84,6 +88,7 @@ namespace Level_Editor
             window.Closed += (sender, e) =>
             {
                 window.Close();
+                loadingState = LoadingState.QUITTING;
             };
         }
 

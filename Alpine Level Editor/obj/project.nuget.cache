@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "axmX3IYDJE/3xxBSit/oipR1rQaKLSm1tZHUlqJ/6AXaLZP73GAETIW9qdUpB3MBB4oTZcCDHegIv02opy6ouA==",
+  "success": true,
+  "projectFilePath": "F:\\Projets\\cs\\Alpine-Level-Editor\\Alpine Level Editor\\Alpine Level Editor.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\RooXChicken\\.nuget\\packages\\tgui.net.win-x64\\0.8.8.17\\tgui.net.win-x64.0.8.8.17.nupkg.sha512"
+  ],
+  "logs": []
+}

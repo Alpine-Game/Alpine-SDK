@@ -18,6 +18,10 @@ namespace Level_Editor {
 
         public void create() {
             sfmlWindow = new RenderWindow(renderer.Handle);
+            sfmlWindow.Closed += (sender, e) =>
+            {
+                System.Environment.Exit(0);
+            };
             itemManager = new ItemManager(sfmlWindow);
 
             MainWindow mainWindow = (MainWindow)mainForm;

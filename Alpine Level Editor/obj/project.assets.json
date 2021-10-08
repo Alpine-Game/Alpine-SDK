@@ -1,0 +1,128 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "TGUI.Net.win-x64/0.8.8.17": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/SFML.Audio.dll": {},
+          "lib/netstandard2.0/SFML.Graphics.dll": {},
+          "lib/netstandard2.0/SFML.System.dll": {},
+          "lib/netstandard2.0/SFML.Window.dll": {},
+          "lib/netstandard2.0/tgui.net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/SFML.Audio.dll": {},
+          "lib/netstandard2.0/SFML.Graphics.dll": {},
+          "lib/netstandard2.0/SFML.System.dll": {},
+          "lib/netstandard2.0/SFML.Window.dll": {},
+          "lib/netstandard2.0/tgui.net.dll": {}
+        },
+        "build": {
+          "build/TGUI.Net.win-x64.targets": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TGUI.Net.win-x64/0.8.8.17": {
+      "sha512": "s0KValEhC5h6CTxrCEq4Ddxn6pCmMkmyjYT/Xq87gUhKb+p+TPrY3QMNldCSz96SqlFvGXwfi5lx0AqX+O2q3A==",
+      "type": "package",
+      "path": "tgui.net.win-x64/0.8.8.17",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetIcon.png",
+        "build/TGUI.Net.win-x64.targets",
+        "build/csfml-audio.dll",
+        "build/csfml-graphics.dll",
+        "build/csfml-system.dll",
+        "build/csfml-window.dll",
+        "build/ctgui-0.8.dll",
+        "build/sfml-audio-2.dll",
+        "build/sfml-graphics-2.dll",
+        "build/sfml-system-2.dll",
+        "build/sfml-window-2.dll",
+        "build/tgui.dll",
+        "lib/netstandard2.0/SFML.Audio.dll",
+        "lib/netstandard2.0/SFML.Graphics.dll",
+        "lib/netstandard2.0/SFML.System.dll",
+        "lib/netstandard2.0/SFML.Window.dll",
+        "lib/netstandard2.0/tgui.net.dll",
+        "lib/netstandard2.0/tgui.net.xml",
+        "tgui.net.win-x64.0.8.8.17.nupkg.sha512",
+        "tgui.net.win-x64.nuspec"
+      ]
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "TGUI.Net.win-x64 >= 0.8.8.17"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\RooXChicken\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "F:\\Projets\\cs\\Alpine-Level-Editor\\Alpine Level Editor\\Alpine Level Editor.csproj",
+      "projectName": "Alpine Level Editor",
+      "projectPath": "F:\\Projets\\cs\\Alpine-Level-Editor\\Alpine Level Editor\\Alpine Level Editor.csproj",
+      "packagesPath": "C:\\Users\\RooXChicken\\.nuget\\packages\\",
+      "outputPath": "F:\\Projets\\cs\\Alpine-Level-Editor\\Alpine Level Editor\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\RooXChicken\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {}
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "dependencies": {
+          "TGUI.Net.win-x64": {
+            "target": "Package",
+            "version": "[0.8.8.17, )"
+          }
+        },
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}

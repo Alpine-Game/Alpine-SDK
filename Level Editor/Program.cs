@@ -10,7 +10,7 @@ namespace Level_Editor {
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args) {
+        public static void Main(string[] args) {
             if (args.Length > 0)
             {
                 foreach (string arg in args)
@@ -38,7 +38,7 @@ namespace Level_Editor {
             }
             else
             {
-                GameState gameState = new GameState("");
+                GameState gameState = new GameState(args:"");
             }
         }
     }

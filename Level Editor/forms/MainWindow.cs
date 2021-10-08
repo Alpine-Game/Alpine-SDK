@@ -153,10 +153,27 @@ namespace Level_Editor {
         {
             Thread thread = new Thread((o =>
             {
-                new GameState("");
+                new GameState(args:"");
             }));
             
             thread.Start();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SettingsWindow window = new SettingsWindow();
+            window.Show();
+        }
+
+        private void compileWindowsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // not added
+        }
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutEngine window = new AboutEngine();
+            window.Show();
         }
     }
 }
