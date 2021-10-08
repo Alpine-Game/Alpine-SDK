@@ -16,7 +16,7 @@ namespace Level_Editor {
                 foreach (string arg in args)
                 {
                     if (arg == "-editor")
-                    {
+                    { 
                         Console.WriteLine("Starting Alpine in level editor mode.");
                 
                         Form mainWindow = new MainWindow();
