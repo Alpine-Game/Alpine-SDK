@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Drawing;
 using System.Linq;
 using Level_Editor.engine.scene;
 using Level_Editor.engine.util;
 using SFML.Graphics;
+using SFML.System;
 using SFML.Window;
+using Color = SFML.Graphics.Color;
+using Image = SFML.Graphics.Image;
 
 namespace Level_Editor
 {
@@ -22,6 +26,8 @@ namespace Level_Editor
 
         private LoadingState loadingState;
         private PostLoadAction postLoadAction;
+
+        private RectangleShape test = new RectangleShape(new Vector2f(2000, 1000));
 
         private string loadLevelPath = ""; //This is used if postLoadAction is set to LOAD_LEVEL.
 
@@ -48,12 +54,18 @@ namespace Level_Editor
                 postLoadAction = PostLoadAction.ENTER_TITLE_SCREEN;
             }
             
-            Settings.LoadSettings();
+            Settings.LoadSettings("project.json");
 
             mode = new VideoMode(Settings.DefaultWindowSizeX, Settings.DefaultWindowSizeY);
             window = new RenderWindow(mode, Settings.WindowName);
-            
+            if(Settings.UnlimitedFramerate)
+                window.SetFramerateLimit(0);
+            else
+                window.SetFramerateLimit(Settings.MaxFPS);
+
             window.SetIcon(256, 256, new Image("res/icon.png").Pixels);
+            
+            test.FillColor = Color.Red;
 
             init(); //Load all the shit!!
             
@@ -95,7 +107,11 @@ namespace Level_Editor
         public void render()
         {
             window.Clear();
+            
+            
+            
             sceneManager.drawCurrentScene();
+            window.Draw(test);
             window.Display();
         }
     }

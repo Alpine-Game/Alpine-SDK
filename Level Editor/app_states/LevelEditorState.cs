@@ -18,6 +18,8 @@ namespace Level_Editor {
 
         public void create() {
             sfmlWindow = new RenderWindow(renderer.Handle);
+            sfmlWindow.SetFramerateLimit(165);
+
             sfmlWindow.Closed += (sender, e) =>
             {
                 System.Environment.Exit(0);

@@ -9,43 +9,52 @@ namespace Level_Editor.engine.util
     {
         public static ushort DefaultWindowSizeX = 1280;
         public static ushort DefaultWindowSizeY = 720;
+        public static bool UnlimitedFramerate = false;
         public static ushort MaxFPS = 165;
         public static ushort UnfocusedFPS = 30;
         public static bool Fullscreen = false;
+        public static string ProjectName = "Alpine Game";
         public static string WindowName = "Made with Alpine Game Engine";
+        public static bool FixedAspectRatio = true;
 
         public static void SaveSettings()
         {
             JObject settingsWrite = new JObject(
+                new JProperty("projectName", ProjectName),
                 new JProperty("maxFps", MaxFPS),
-                new JProperty("minimizedFps", UnfocusedFPS),
                 new JProperty("windowX", DefaultWindowSizeX),
                 new JProperty("windowY", DefaultWindowSizeY),
-                new JProperty("fullscreen", Fullscreen),
-                new JProperty("title", WindowName)
+                new JProperty("windowTitle", WindowName)
             );
             
-            File.WriteAllText("settings.json", settingsWrite.ToString());
+            File.WriteAllText(Program.projectPath, settingsWrite.ToString());
+        }
+        
+        public static void SaveSettings(string path)
+        {
+            JObject settingsWrite = new JObject(
+                new JProperty("projectName", ProjectName),
+                new JProperty("maxFps", MaxFPS),
+                new JProperty("windowX", DefaultWindowSizeX),
+                new JProperty("windowY", DefaultWindowSizeY),
+                new JProperty("windowTitle", WindowName)
+            );
+            
+            File.WriteAllText(path, settingsWrite.ToString());
         }
 
-        public static List<string> LoadSettings()
+        public static void LoadSettings(string path)
         {
-            List<string> data = new List<string>();
+            Program.projectPath = path;
             try
             {
-                JObject settingsRead = JObject.Parse(File.ReadAllText("settings.json"));
+                JObject settingsRead = JObject.Parse(File.ReadAllText(path));
+
+                ProjectName = settingsRead["projectName"].ToObject<string>();
                 MaxFPS = settingsRead["maxFps"].ToObject<UInt16>();
-                UnfocusedFPS = settingsRead["minimizedFps"].ToObject<UInt16>();
-                WindowName = settingsRead["title"].ToObject<String>();
-                
+                WindowName = settingsRead["windowTitle"].ToObject<string>();
                 DefaultWindowSizeX = settingsRead["windowX"].ToObject<UInt16>();
                 DefaultWindowSizeY = settingsRead["windowY"].ToObject<UInt16>();
-                
-                data.Add(MaxFPS.ToString());
-                data.Add(UnfocusedFPS.ToString());
-                data.Add(WindowName);
-                data.Add(DefaultWindowSizeX.ToString());
-                data.Add(DefaultWindowSizeY.ToString());
 
             }
             catch
@@ -53,8 +62,6 @@ namespace Level_Editor.engine.util
                 //Logger.LogError("Failed to load settings. Creating a new settings file.");
                 SaveSettings();
             }
-
-            return data;
         }
     }
 }

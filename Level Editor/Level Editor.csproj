@@ -129,12 +129,8 @@
     <Compile Include="forms\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="forms\SettingsWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\SettingsWindow.Designer.cs">
-      <DependentUpon>SettingsWindow.cs</DependentUpon>
-    </Compile>
+    <Compile Include="forms\ProjectSettings.cs" />
+    <Compile Include="forms\ProjectSettings.Designer.cs" />
     <Compile Include="item\Item.cs" />
     <Compile Include="item\ItemManager.cs" />
     <Compile Include="mini_widgets\EntitySettingsPanel.cs">
@@ -165,9 +161,7 @@
     <EmbeddedResource Include="forms\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\SettingsWindow.resx">
-      <DependentUpon>SettingsWindow.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="forms\ProjectSettings.resx" />
     <EmbeddedResource Include="mini_widgets\EntitySettingsPanel.resx">
       <DependentUpon>EntitySettingsPanel.cs</DependentUpon>
     </EmbeddedResource>

@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Level_Editor {
-    static class Program {
+    static class Program
+    {
+        public static string projectPath = "ERROR";
         /// <summary>
         /// The main entry point for the application.
         /// </summary>

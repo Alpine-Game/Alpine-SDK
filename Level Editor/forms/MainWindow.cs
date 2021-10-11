@@ -1,9 +1,14 @@
 ﻿using System;
+using System.IO;
 using System.Diagnostics;
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
+using Level_Editor.Properties;
 using ThreadState = System.Diagnostics.ThreadState;
+
+using Level_Editor.engine.util;
+using Settings = Level_Editor.engine.util.Settings;
 
 namespace Level_Editor {
     public partial class MainWindow : Form {
@@ -24,6 +29,16 @@ namespace Level_Editor {
             nameLabel.Visible = false;
             typeLabel.Visible = false;
 
+        }
+        
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            if (keyData == (Keys.F5))
+            {
+                runAndDebug();
+                return true;
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -151,18 +166,64 @@ namespace Level_Editor {
 
         private void playToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Thread thread = new Thread((o =>
+            runAndDebug();
+        }
+        
+        private void runAndDebug()
+        {
+            if (Program.projectPath != "ERROR")
             {
-                new GameState(args:"");
-            }));
+                File.Delete("project.json");
+                Settings.SaveSettings("project.json");
+                Thread thread = new Thread((o =>
+                {
+                    new GameState("");
+                }));
             
-            thread.Start();
+                thread.Start();
+            }
+            else
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = ".\\";
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        //Get the path of specified file
+                        Program.projectPath = openFileDialog.FileName;
+                        
+                        Settings.LoadSettings(Program.projectPath);
+
+                        runAndDebug();
+                    }
+                }
+            }
         }
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            SettingsWindow window = new SettingsWindow();
-            window.Show();
+            if (Program.projectPath != "ERROR")
+            {
+                ProjectSettings window = new ProjectSettings();
+                window.Visible = true;
+            }
+            else
+            {
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = ".\\";
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        //Get the path of specified file
+                        Program.projectPath = openFileDialog.FileName;
+                        
+                        ProjectSettings window = new ProjectSettings();
+                        window.Visible = true;
+                    }
+                }
+            }
         }
 
         private void compileWindowsToolStripMenuItem_Click(object sender, EventArgs e)
@@ -174,6 +235,51 @@ namespace Level_Editor {
         {
             AboutEngine window = new AboutEngine();
             window.Show();
+        }
+
+        private void optionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ProjectSettings window = new ProjectSettings();
+            window.Show();
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Stream myStream;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+
+            saveFileDialog1.Filter = "json files (*.json)|*.json";
+            saveFileDialog1.FilterIndex = 2;
+            saveFileDialog1.RestoreDirectory = true;
+ 
+            if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                Program.projectPath = saveFileDialog1.FileName;
+                
+                Settings.SaveSettings();
+
+                ProjectSettings window = new ProjectSettings();
+                window.Visible = true;
+            }
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Environment.Exit(0);
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = ".\\";
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    Program.projectPath = openFileDialog.FileName;
+                }
+            }
         }
     }
 }

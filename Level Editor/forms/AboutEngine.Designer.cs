@@ -39,11 +39,11 @@ namespace Level_Editor
             // 
             // name
             // 
-            this.name.Location = new System.Drawing.Point(110, 119);
+            this.name.Location = new System.Drawing.Point(122, 119);
             this.name.Name = "name";
             this.name.Size = new System.Drawing.Size(122, 18);
             this.name.TabIndex = 0;
-            this.name.Text = "Alpine Game Engine";
+            this.name.Text = "Alpine Engine";
             // 
             // description
             // 
